@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Expense Tracker</title>
+		<link rel="stylesheet" href="lib/bootstrap.min.css" />
+		<link rel="stylesheet" href="lib/bootstrap-icons.min.css" />
+		<link rel="stylesheet" href="css/styles.css" />
+		<script src="lib/google-gsi.js" async defer></script>
+	</head>
+
+	<body class="bg-body-secondary">
+		<!-- Auth Overlay -->
+		<div
+			id="authOverlay"
+			class="d-flex position-fixed top-0 start-0 w-100 h-100 bg-white align-items-center justify-content-center"
+			style="z-index: 9999"
+		>
+			<div class="text-center">
+				<div class="mb-3 fs-1">💸</div>
+				<h4 class="mb-4">Expense Tracker</h4>
+				<button id="signInBtn" class="btn btn-outline-secondary btn-lg">
+					<i class="bi bi-google me-2"></i>Sign in with Google
+				</button>
+			</div>
+		</div>
+
+		<!-- Loading Modal -->
+		<div class="modal fade" id="loadingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-body py-4">
+						<div id="loadingSpinnerSection" class="d-flex flex-column align-items-center">
+							<div class="spinner-border text-primary mb-3" role="status">
+								<span class="visually-hidden">Loading...</span>
+							</div>
+							<p id="loadingText" class="mb-0 text-muted"></p>
+						</div>
+						<div id="loadingErrorSection" class="d-none d-flex flex-column align-items-center">
+							<i class="bi bi-exclamation-circle text-danger d-block mb-2" style="font-size: 2.5rem"></i>
+							<h5 class="text-danger">Loading Failed</h5>
+							<p id="loadingErrorMessage" class="text-muted mb-0"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Page Layout -->
+		<div class="d-flex min-vh-100">
+			<app-header></app-header>
+
+			<!-- Right side -->
+			<div class="flex-grow-1" style="min-width: 0">
+				<!-- Spacer for mobile fixed navbar -->
+				<div class="d-md-none" style="height: 56px"></div>
+
+				<!-- Main Content -->
+				<div id="mainContent" class="p-3 d-none">
+					<dashboard-tab id="tab-dashboard"></dashboard-tab>
+					<expenses-tab id="tab-expenses" class="d-none"></expenses-tab>
+					<payments-tab id="tab-payments" class="d-none"></payments-tab>
+					<balances-tab id="tab-balances" class="d-none"></balances-tab>
+				</div>
+			</div>
+		</div>
+
+		<!-- Confirm Modal -->
+		<div
+			class="modal fade"
+			data-bs-backdrop="static"
+			data-bs-keyboard="false"
+			id="confirmModal"
+			tabindex="-1"
+		>
+			<div class="modal-dialog modal-sm modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="confirmModalTitle"></h5>
+					</div>
+					<div class="modal-body" id="confirmModalBody"></div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
+							Cancel
+						</button>
+						<button class="btn btn-sm" id="confirmModalActionBtn">
+							Confirm
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="lib/bootstrap.bundle.min.js"></script>
+		<script src="config.js"></script>
+		<script src="config.local.js" onerror="void 0"></script>
+		<script src="js/auth.js"></script>
+		<script src="js/sheets.js"></script>
+		<script src="js/api.js"></script>
+		<script type="module" src="js/app.js"></script>
+	</body>
+</html>
