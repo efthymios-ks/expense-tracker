@@ -1,0 +1,25 @@
+/* app-header is a structural wrapper — render as contents so its children
+   participate directly in the outer flex layout */
+app-header {
+  display: contents;
+}
+
+/* Selected nav item */
+[data-tab][data-selected] {
+  background: rgba(var(--bs-black-rgb), 0.2);
+  font-weight: 600;
+}
+
+/* Card styling */
+.card {
+  border: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+}
+
+.card-header {
+  background: var(--bs-white);
+  border-bottom: 1px solid var(--bs-border-color);
+  border-radius: 10px 10px 0 0 !important;
+  font-weight: 600;
+}

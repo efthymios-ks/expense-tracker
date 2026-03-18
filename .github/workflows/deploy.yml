@@ -1,0 +1,35 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Inject secrets into config.js
+        run: |
+          sed -i "s|%%SPREADSHEET_ID%%|${{ secrets.SPREADSHEET_ID }}|g" src/config.js
+          sed -i "s|%%GOOGLE_CLIENT_ID%%|${{ secrets.GOOGLE_CLIENT_ID }}|g" src/config.js
+          sed -i "s|%%ALLOWED_EMAILS%%|${{ secrets.ALLOWED_EMAILS }}|g" src/config.js
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: src
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
