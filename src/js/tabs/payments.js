@@ -268,7 +268,7 @@ class PaymentsTab extends LitElement {
                 <label><i class="bi bi-currency-euro me-1"></i>Amount (€)</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="text" id="addPaymentNote" class="form-control" placeholder="Note" />
+                <input type="text" id="addPaymentNote" class="form-control" placeholder="Note" list="paymentNotesSuggestions" autocomplete="off" />
                 <label><i class="bi bi-chat-left-text me-1"></i>Note</label>
               </div>
               ${this.#renderErrors(this._addErrors)}
@@ -318,7 +318,7 @@ class PaymentsTab extends LitElement {
                 <label><i class="bi bi-currency-euro me-1"></i>Amount (€)</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="text" id="editPaymentNote" class="form-control" placeholder="Note" />
+                <input type="text" id="editPaymentNote" class="form-control" placeholder="Note" list="paymentNotesSuggestions" autocomplete="off" />
                 <label><i class="bi bi-chat-left-text me-1"></i>Note</label>
               </div>
               ${this.#renderErrors(this._editErrors)}
@@ -485,6 +485,9 @@ class PaymentsTab extends LitElement {
       </div>
       ${this.#renderAddModal()}
       ${this.#renderEditModal()}
+      <datalist id="paymentNotesSuggestions">
+        ${state.allNotes.map((note) => html`<option value="${note}"></option>`)}
+      </datalist>
     `;
   }
 }

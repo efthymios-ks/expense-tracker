@@ -269,7 +269,7 @@ class ExpensesTab extends LitElement {
                 ></user-checkboxes>
               </div>
               <div class="form-floating mb-3">
-                <input type="text" id="addExpenseNote" class="form-control" placeholder="Note" />
+                <input type="text" id="addExpenseNote" class="form-control" placeholder="Note" list="expenseNotesSuggestions" autocomplete="off" />
                 <label><i class="bi bi-chat-left-text me-1"></i>Note</label>
               </div>
               ${this.#renderErrors(this._addErrors)}
@@ -321,7 +321,7 @@ class ExpensesTab extends LitElement {
                 ></user-checkboxes>
               </div>
               <div class="form-floating mb-3">
-                <input type="text" id="editExpenseNote" class="form-control" placeholder="Note" />
+                <input type="text" id="editExpenseNote" class="form-control" placeholder="Note" list="expenseNotesSuggestions" autocomplete="off" />
                 <label><i class="bi bi-chat-left-text me-1"></i>Note</label>
               </div>
               ${this.#renderErrors(this._editErrors)}
@@ -519,6 +519,9 @@ class ExpensesTab extends LitElement {
       </div>
       ${this.#renderAddModal()}
       ${this.#renderEditModal()}
+      <datalist id="expenseNotesSuggestions">
+        ${state.allNotes.map((note) => html`<option value="${note}"></option>`)}
+      </datalist>
     `;
   }
 }

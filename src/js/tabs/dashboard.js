@@ -44,7 +44,7 @@ class DashboardTab extends LitElement {
 
     return html`
       <div class="col-12 col-md-6">
-        <div class="card h-100">
+        <div class="card">
           <div class="card-header"><i class="bi bi-hourglass-split me-1"></i> Current Balance</div>
           <div class="card-body">
             ${this._owed.length
