@@ -1,5 +1,6 @@
 import { LitElement, html } from "../../lib/lit.min.js";
 import { userBadge } from "../components/userBadge.js";
+import "../components/noteAutocomplete.js";
 import "../components/userCheckboxes.js";
 import "../components/userFilterDropdown.js";
 import { showConfirm } from "../confirm.js";
@@ -268,10 +269,7 @@ class ExpensesTab extends LitElement {
                   .users=${state.allUsers}
                 ></user-checkboxes>
               </div>
-              <div class="form-floating mb-3">
-                <input type="text" id="addExpenseNote" class="form-control" placeholder="Note" list="expenseNotesSuggestions" autocomplete="off" />
-                <label><i class="bi bi-chat-left-text me-1"></i>Note</label>
-              </div>
+              <note-autocomplete id="addExpenseNote" class="mb-3" .suggestions=${state.allNotes}></note-autocomplete>
               ${this.#renderErrors(this._addErrors)}
             </div>
             <div class="modal-footer">
@@ -320,10 +318,7 @@ class ExpensesTab extends LitElement {
                   .initialIds=${this._editInitialSplitIds}
                 ></user-checkboxes>
               </div>
-              <div class="form-floating mb-3">
-                <input type="text" id="editExpenseNote" class="form-control" placeholder="Note" list="expenseNotesSuggestions" autocomplete="off" />
-                <label><i class="bi bi-chat-left-text me-1"></i>Note</label>
-              </div>
+              <note-autocomplete id="editExpenseNote" class="mb-3" .suggestions=${state.allNotes}></note-autocomplete>
               ${this.#renderErrors(this._editErrors)}
             </div>
             <div class="modal-footer">
@@ -519,9 +514,6 @@ class ExpensesTab extends LitElement {
       </div>
       ${this.#renderAddModal()}
       ${this.#renderEditModal()}
-      <datalist id="expenseNotesSuggestions">
-        ${state.allNotes.map((note) => html`<option value="${note}"></option>`)}
-      </datalist>
     `;
   }
 }

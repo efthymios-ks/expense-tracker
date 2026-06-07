@@ -23,3 +23,45 @@ app-header {
   border-radius: 10px 10px 0 0 !important;
   font-weight: 600;
 }
+
+note-autocomplete {
+  display: block;
+}
+
+.note-ac-open {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.note-ac-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1060;
+  background: #fff;
+  border: 1px solid #86b7fe;
+  border-top: 0;
+  border-radius: 0 0 .375rem .375rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.note-ac-item {
+  padding: .6rem .75rem;
+  cursor: pointer;
+  font-size: .9rem;
+  border-bottom: 1px solid #f0f0f0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.note-ac-item:last-child {
+  border-bottom: 0;
+}
+
+.note-ac-item:hover,
+.note-ac-item:active {
+  background: #e8f0fe;
+}
