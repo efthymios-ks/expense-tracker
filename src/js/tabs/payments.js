@@ -1,5 +1,6 @@
 import { LitElement, html } from "../../lib/lit.min.js";
 import { userBadge } from "../components/userBadge.js";
+import "../components/noteAutocomplete.js";
 import "../components/userFilterDropdown.js";
 import { showConfirm } from "../confirm.js";
 import { state } from "../state.js";
@@ -267,10 +268,7 @@ class PaymentsTab extends LitElement {
                 <input type="number" id="addPaymentAmount" class="form-control" step="0.01" min="0.01" placeholder="0.00" />
                 <label><i class="bi bi-currency-euro me-1"></i>Amount (€)</label>
               </div>
-              <div class="form-floating mb-3">
-                <input type="text" id="addPaymentNote" class="form-control" placeholder="Note" list="paymentNotesSuggestions" autocomplete="off" />
-                <label><i class="bi bi-chat-left-text me-1"></i>Note</label>
-              </div>
+              <note-autocomplete id="addPaymentNote" class="mb-3" .suggestions=${state.allNotes}></note-autocomplete>
               ${this.#renderErrors(this._addErrors)}
             </div>
             <div class="modal-footer">
@@ -317,10 +315,7 @@ class PaymentsTab extends LitElement {
                 <input type="number" id="editPaymentAmount" class="form-control" step="0.01" min="0.01" placeholder="0.00" />
                 <label><i class="bi bi-currency-euro me-1"></i>Amount (€)</label>
               </div>
-              <div class="form-floating mb-3">
-                <input type="text" id="editPaymentNote" class="form-control" placeholder="Note" list="paymentNotesSuggestions" autocomplete="off" />
-                <label><i class="bi bi-chat-left-text me-1"></i>Note</label>
-              </div>
+              <note-autocomplete id="editPaymentNote" class="mb-3" .suggestions=${state.allNotes}></note-autocomplete>
               ${this.#renderErrors(this._editErrors)}
             </div>
             <div class="modal-footer">
@@ -485,9 +480,6 @@ class PaymentsTab extends LitElement {
       </div>
       ${this.#renderAddModal()}
       ${this.#renderEditModal()}
-      <datalist id="paymentNotesSuggestions">
-        ${state.allNotes.map((note) => html`<option value="${note}"></option>`)}
-      </datalist>
     `;
   }
 }
