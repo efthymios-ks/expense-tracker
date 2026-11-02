@@ -64,14 +64,6 @@ window.api = {
     return calcSettlement(unprocessed, userIds, openPayments, window.state.allSettlements);
   },
 
-  // Settlement preview for close period — current period only, no carry-forward
-  computePeriodSettlement() {
-    const unprocessed = window.state.allExpenses.filter((e) => !e.BalanceId);
-    const openPayments = window.state.allPayments.filter((p) => !p.BalanceId);
-    const userIds = window.state.allUsers.map((u) => u.Id);
-    return calcSettlement(unprocessed, userIds, openPayments);
-  },
-
   // --- Expenses ---
 
   async addExpense(expense) {

@@ -33,7 +33,7 @@ class BalancesTab extends LitElement {
     this._balances = state.allBalances;
     this._unprocessedExpenses = state.allExpenses.filter((e) => !e.BalanceId);
     this._unprocessedPayments = state.allPayments.filter((p) => !p.BalanceId);
-    this._previewSettlements = window.api.computePeriodSettlement().map((s) => {
+    this._previewSettlements = window.api.computeCurrentOwed().map((s) => {
       const userMap = Object.fromEntries(state.allUsers.map((u) => [u.Id, u]));
       return {
         ...s,
